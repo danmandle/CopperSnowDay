@@ -20,16 +20,18 @@ foreach($html->find('div.table_data') as $e){
 }
 */
 
-$yes = $html->find('div.table_data', 0);
+$yes = $html->find('table[id=report-page-conditions-snow]', 0);
+$more_yes = $yes->find('tr',2);
+$most_yes = $more_yes->find('td',0);
 
-if((float)$yes->innertext >= 4){
+if((float)$most_yes->innertext >= 4){
 	echo "<h1>It's a snow day!!</h1>";
 }
 else{
 	echo "<h1>Nope. It snowed </h1>";
 }
 
-echo "<h2>It snowed ".$yes->innertext." inches in the last 24 hours.</h2>";
+echo "<h2>It snowed ".$most_yes->innertext." inches in the last 24 hours.</h2>";
 
 ?>
 <img src="http://webcams.coppercolorado.com/SnowStake/MorningStake_430AM/still.jpg"/>
